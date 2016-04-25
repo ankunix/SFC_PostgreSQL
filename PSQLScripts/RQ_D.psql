@@ -1,0 +1,55 @@
+CREATE OR REPLACE FUNCTION RQ_D(DATA_CATEGORY text,NDIM integer,SIZE integer,QUERIES_COUNT integer)
+  RETURNS integer
+AS $$
+import csv
+import sys
+import math
+grid_edge=1024
+totalPoints=grid_edge**ndim
+order=int(math.log(totalPoints,4))
+sys.path.append('/home/sdb/PyScripts')
+import hilbert
+with open('/home/sdb/SyntheticData/RangeQ_'+str(ndim)+'_'+str(queries_count)+'.txt', 'rU') as f:
+    reader = csv.reader(f)
+    rowCount=0
+    if ndim==2:
+        for row in reader:
+            for dim0 in range(int(row[1]), int(row[ndim+1])+1) if int(row[1]) < int(row[ndim+1]) else range(int(row[ndim+1]), int(row[1])+1):
+                for dim1 in range(int(row[2]), int(row[ndim+2])+1) if int(row[2]) < int(row[ndim+2]) else range(int(row[ndim+2]), int(row[2])+1):
+                    rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(dim0)+"' AND dim1='"+str(dim1)+"'")
+                    rowCount+=rv.nrows()
+                    if(rv.nrows()!=0):
+                      plpy.info(rv)
+    elif ndim==4:
+        for row in reader:
+              for dim0 in range(int(row[1]), int(row[ndim+1])+1) if int(row[1]) < int(row[ndim+1]) else range(int(row[ndim+1]), int(row[1])+1):
+                  for dim1 in range(int(row[2]), int(row[ndim+2])+1) if int(row[2]) < int(row[ndim+2]) else range(int(row[ndim+2]), int(row[2])+1):
+                      for dim2 in range(int(row[3]), int(row[ndim+3])+1) if int(row[3]) < int(row[ndim+3]) else range(int(row[ndim+3]), int(row[3])+1):
+                          for dim3 in range(int(row[4]), int(row[ndim+4])+1) if int(row[4]) < int(row[ndim+4]) else range(int(row[ndim+4]), int(row[4])+1):
+                              rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(dim0)+"' AND dim1='"+str(dim1)+"' AND dim2='"+str(dim2)+"' AND dim3='"+str(dim3)+"'")
+                              rowCount+=rv.nrows()
+                              if(rv.nrows()!=0):
+                                plpy.info(rv)
+    elif ndim==8:
+        for row in reader:
+            for dim0 in range(int(row[1]), int(row[ndim+1])+1) if int(row[1]) < int(row[ndim+1]) else range(int(row[ndim+1]), int(row[1])+1):
+                for dim1 in range(int(row[2]), int(row[ndim+2])+1) if int(row[2]) < int(row[ndim+2]) else range(int(row[ndim+2]), int(row[2])+1):
+                    for dim2 in range(int(row[3]), int(row[ndim+3])+1) if int(row[3]) < int(row[ndim+3]) else range(int(row[ndim+3]), int(row[3])+1):
+                        for dim3 in range(int(row[4]), int(row[ndim+4])+1) if int(row[4]) < int(row[ndim+4]) else range(int(row[ndim+4]), int(row[4])+1):
+                            for dim4 in range(int(row[5]), int(row[ndim+5])+1) if int(row[5]) < int(row[ndim+5]) else range(int(row[ndim+5]), int(row[5])+1):
+                                for dim5 in range(int(row[6]), int(row[ndim+6])+1) if int(row[6]) < int(row[ndim+6]) else range(int(row[ndim+6]), int(row[6])+1):
+                                    for dim6 in range(int(row[7]), int(row[ndim+7])+1) if int(row[7]) < int(row[ndim+7]) else range(int(row[ndim+7]), int(row[7])+1):
+                                        for dim7 in range(int(row[8]), int(row[ndim+8])+1) if int(row[8]) < int(row[ndim+8]) else range(int(row[ndim+8]), int(row[8])+1):
+                                            rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(dim0)+"' AND dim1='"+str(dim1)+"' AND dim2='"+str(dim2)+"' AND dim3='"+str(dim3)+"' AND dim4='"+str(dim4)+"' AND dim5='"+str(dim5)+"' AND dim6='"+str(dim6)+"' AND dim7='"+str(dim7)+"'")
+                                            rowCount+=rv.nrows()
+                                            if(rv.nrows()!=0):
+                                                plpy.info(rv)
+    elif ndim==16:
+        plpy.info("Unsupported dimensionality!")
+        return -2
+    else:
+        plpy.info("Unsupported dimensionality!")
+        return -2
+
+return rowCount
+$$ LANGUAGE plpythonu;

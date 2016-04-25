@@ -1,0 +1,39 @@
+CREATE OR REPLACE FUNCTION HilbertAC_D(DATA_CATEGORY text,NDIM integer,SIZE integer,GRID_EDGE integer)
+  RETURNS integer
+AS $$
+import sys
+import math
+sys.path.append('/home/sdb/PyScripts')
+import hilbert
+totalPoints=grid_edge**ndim
+order=int(math.log(totalPoints,4))
+count=0
+batch_size=1000
+try:
+    plpy.execute("TRUNCATE HilbertAC_"+str(data_category)+"_"+str(ndim)+"_"+str(size))
+    cursor = plpy.cursor("SELECT * FROM "+str(data_category)+"_"+str(ndim)+"_"+str(size))
+    plan=plpy.prepare("INSERT INTO HilbertAC_"+str(data_category)+"_"+str(ndim)+"_"+str(size)+"(vkey,id) VALUES ($1,$2)", ["text", "text"])
+except plpy.SPIError:
+    return -1
+while True:
+    rows = cursor.fetch(batch_size)
+    if not rows:
+        break
+    for row in rows:
+        id=int(row['id'])
+        if ndim==2:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']))))
+        elif ndim==4:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']))))
+        elif ndim==8:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']),int(row['dim4']),int(row['dim5']),int(row['dim6']),int(row['dim7']))))
+        elif ndim==16:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']),int(row['dim4']),int(row['dim5']),int(row['dim6']),int(row['dim7']),int(row['dim8']),int(row['dim9']),int(row['dim10']),int(row['dim11']),int(row['dim12']),int(row['dim13']),int(row['dim14']),int(row['dim15']))))
+        else:
+            plpy.info("Unsupported dimensionality!")
+            return -2
+        plpy.execute(plan,[vKey, id])
+        count+=1
+        plpy.info(str(100.00*count/size)+"%\tCompleted")
+return count
+$$ LANGUAGE plpythonu;

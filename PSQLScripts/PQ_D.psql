@@ -1,0 +1,44 @@
+CREATE OR REPLACE FUNCTION PQ_D(DATA_CATEGORY text,NDIM integer,SIZE integer,GRID_EDGE integer)
+  RETURNS integer
+AS $$
+import csv
+import sys
+import math
+grid_edge=1024
+totalPoints=grid_edge**ndim
+order=int(math.log(totalPoints,4))
+sys.path.append('/home/sdb/PyScripts')
+import hilbert
+with open('/home/sdb/SyntheticData/point_query_'+str(data_category).lower()+'/point_'+str(data_category).lower()+'_'+str(ndim)+'.txt', 'rU') as f:
+    reader = csv.reader(f)
+    rowCount=0
+    if ndim==2:
+        for row in reader:
+            rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(row[1])+"' AND dim1='"+str(row[2])+"'")
+            rowCount+=rv.nrows()
+            if(rv.nrows()!=0):
+              plpy.info(str(rowCount)+"\n"+str(rv))
+    elif ndim==4:
+        for row in reader:
+            rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(row[1])+"' AND dim1='"+str(row[2])+"' AND dim2='"+str(row[3])+"' AND dim3='"+str(row[4])+"'")
+            rowCount+=rv.nrows()
+            if(rv.nrows()!=0):
+              plpy.info(str(rowCount)+"\n"+str(rv))
+    elif ndim==8:
+        for row in reader:
+            rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(row[1])+"' AND dim1='"+str(row[2])+"' AND dim2='"+str(row[3])+"' AND dim3='"+str(row[4])+"' AND dim4='"+str(row[5])+"' AND dim5='"+str(row[6])+"' AND dim6='"+str(row[7])+"' AND dim7='"+str(row[8])+"'")
+            rowCount+=rv.nrows()
+            if(rv.nrows()!=0):
+              plpy.info(str(rowCount)+"\n"+str(rv))
+    elif ndim==16:
+        for row in reader:
+            rv=plpy.execute("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE dim0='"+str(row[1])+"' AND dim1='"+str(row[2])+"' AND dim2='"+str(row[3])+"' AND dim3='"+str(row[4])+"' AND dim4='"+str(row[5])+"' AND dim5='"+str(row[6])+"' AND dim6='"+str(row[7])+"' AND dim7='"+str(row[8])+"' AND dim8='"+str(row[9])+"' AND dim9='"+str(row[10])+"' AND dim10='"+str(row[11])+"' AND dim11='"+str(row[12])+"' AND dim12='"+str(row[13])+"' AND dim13='"+str(row[14])+"' AND dim14='"+str(row[15])+"' AND dim15='"+str(row[16])+"'")
+            rowCount+=rv.nrows()
+            if(rv.nrows()!=0):
+              plpy.info(str(rowCount)+"\n"+str(rv))
+    else:
+        plpy.info("Unsupported dimensionality!")
+        return -2
+
+return rowCount
+$$ LANGUAGE plpythonu;

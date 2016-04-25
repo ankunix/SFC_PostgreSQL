@@ -1,0 +1,84 @@
+DROP TABLE uniform_2 CASCADE;
+DROP TABLE uniform_4 CASCADE;
+DROP TABLE uniform_8 CASCADE;
+CREATE TABLE uniform_2 (
+  id text PRIMARY KEY,
+  dim0 text,
+  dim1 text
+);
+
+\copy uniform_2 from ~/SyntheticData/uniform_2_10000.txt DELIMITER ',' CSV
+
+CREATE TABLE uniform_4 (
+  id text PRIMARY KEY,
+  dim0 text,
+  dim1 text,
+  dim2 text,
+  dim3 text
+);
+
+\copy uniform_4 from ~/SyntheticData/uniform_4_10000.txt DELIMITER ',' CSV
+
+CREATE TABLE uniform_8 (
+  id text PRIMARY KEY,
+  dim0 text,
+  dim1 text,
+  dim2 text,
+  dim3 text,
+  dim4 text,
+  dim5 text,
+  dim6 text,
+  dim7 text
+);
+
+CREATE TABLE uniform_16 (
+  id text PRIMARY KEY,
+  dim0 text,
+  dim1 text,
+  dim2 text,
+  dim3 text,
+  dim4 text,
+  dim5 text,
+  dim6 text,
+  dim7 text,
+  dim8 text,
+  dim9 text,
+  dim10 text,
+  dim11 text,
+  dim12 text,
+  dim13 text,
+  dim14 text,
+  dim15 text
+);
+
+
+
+\copy uniform_16 from ~/SyntheticData/uniform_16_10000.txt DELIMITER ',' CSV
+
+DROP TABLE HilbertC_U_2;
+DROP TABLE HilbertC_U_4;
+DROP TABLE HilbertC_U_8;
+DROP TABLE HilbertC_U_16;
+
+
+CREATE TABLE HilbertC_U_2 (
+  vkey text PRIMARY KEY,
+  id text references uniform_2(id)
+);
+
+CREATE TABLE HilbertC_U_4 (
+  vkey text PRIMARY KEY,
+  id text references uniform_4(id)
+);
+
+CREATE TABLE HilbertC_U_8 (
+  vkey text PRIMARY KEY,
+  id text references uniform_8(id)
+);
+
+CREATE TABLE HilbertC_U_16 (
+  vkey text PRIMARY KEY,
+  id text references uniform_8(id)
+);
+
+

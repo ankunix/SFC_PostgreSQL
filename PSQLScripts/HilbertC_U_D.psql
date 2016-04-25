@@ -1,0 +1,55 @@
+CREATE OR REPLACE FUNCTION HilbertC_U_D(NDIM integer)
+  RETURNS integer
+AS $$
+import sys
+sys.path.append('/home/sdb')
+import hilbert
+cursor = plpy.execute("SELECT * FROM uniform_"+str(ndim))
+if ndim==2:
+    try:
+        plpy.execute("TRUNCATE HilbertC_U_2")
+    except plpy.SPIError:
+        plpy.info("Error in Purging")
+        return -1
+    else:
+        plpy.info("Purge Complete")
+    for row in cursor:
+        id=int(row['id'])
+        vKey=int(hilbert.hilbert_index(ndim, 4, [int(row['dim0']),int(row['dim1'])]))
+        plpy.info(str(vKey)+" "+str(id))
+        plan=plpy.prepare("INSERT INTO HilbertC_U_2(vkey,id) VALUES ($1,$2)", ["text", "text"])
+        plpy.execute(plan,[vKey, id])
+elif ndim==4:
+    try:
+        plpy.execute("TRUNCATE HilbertC_U_4")
+    except plpy.SPIError:
+        plpy.info("Error in Purging")
+        return -1
+    else:
+        plpy.info("Purge Complete")
+    for row in cursor:
+        id=int(row['id'])
+        vKey=int(hilbert.hilbert_index(ndim, 4, [int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3'])]))
+        plpy.info(str(vKey)+" "+str(id))
+        plan=plpy.prepare("INSERT INTO HilbertC_U_4(vkey,id) VALUES ($1,$2)", ["text", "text"])
+        plpy.execute(plan,[vKey, id])
+elif ndim==8:
+    try:
+        plpy.execute("TRUNCATE HilbertC_U_8")
+    except plpy.SPIError:
+        plpy.info("Error in Purging")
+        return -1
+    else:
+        plpy.info("Purge Complete")
+    for row in cursor:
+        id=int(row['id'])
+        vKey=int(hilbert.hilbert_index(ndim, 4, [int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']),int(row['dim4']),int(row['dim5']),int(row['dim6']),int(row['dim7'])]))
+        plpy.info(str(vKey)+" "+str(id))
+        plan=plpy.prepare("INSERT INTO HilbertC_U_8(vkey,id) VALUES ($1,$2)", ["text", "text"])
+        plpy.execute(plan,[vKey, id])
+else:
+    plpy.info("Unsupported dimensionality!")
+#plpy.info(str(hilbert.hilbert_index(2, 3, [x,y]))+" "+str(x)+","+str(y)+" "+str(rv[x]))
+return 0
+$$ LANGUAGE plpythonu;
+

@@ -1,0 +1,42 @@
+CREATE OR REPLACE FUNCTION HilbertAC_RQ_D(DATA_CATEGORY text,NDIM integer,SIZE integer,GRID_EDGE integer, MBRID integer)
+  RETURNS integer
+AS $$
+import sys
+import math
+totalPoints=grid_edge**ndim
+order=int(math.log(totalPoints,4))
+sys.path.append('/home/sdb/PyScripts')
+import hilbert
+batch_size=10000
+rowCount=0
+count=0
+try:
+    totalRangePoints=int(plpy.execute("select count(1) from range_u_"+str(ndim)+" where id="+str(mbrid))[0]['count'])
+    cursor = plpy.cursor("SELECT * FROM range_u_"+str(ndim)+" where id="+str(mbrid))
+    plan=plpy.prepare("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE id=(select id from HilbertAC_"+str(data_category)+"_"+str(ndim)+"_"+str(size)+" where vkey=$1)", ["text"])
+except plpy.SPIError:
+    return -1
+while True:
+    rows = cursor.fetch(batch_size)
+    if not rows:
+        break
+    for row in rows:
+        if ndim==2:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']))))
+        elif ndim==4:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']))))
+        elif ndim==8:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']),int(row['dim4']),int(row['dim5']),int(row['dim6']),int(row['dim7']))))
+        elif ndim==16:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row['dim0']),int(row['dim1']),int(row['dim2']),int(row['dim3']),int(row['dim4']),int(row['dim5']),int(row['dim6']),int(row['dim7']),int(row['dim8']),int(row['dim9']),int(row['dim10']),int(row['dim11']),int(row['dim12']),int(row['dim13']),int(row['dim14']),int(row['dim15']))))
+        else:
+            plpy.info("Unsupported dimensionality!")
+            return -2
+        rv=plpy.execute(plan,[vKey])
+        rowCount+=rv.nrows()
+        if(rv.nrows()!=0):
+              plpy.info(rv)
+        count+=1
+        plpy.info(str(100.00*count/totalRangePoints)+"%\tCompleted "+str(rowCount)+" rows found.")
+return count
+$$ LANGUAGE plpythonu;

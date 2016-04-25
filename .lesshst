@@ -1,0 +1,10 @@
+.less-history-file:
+.search
+"SyntheticData/uniform_2_10000.txt DELIMITER ',' CSV
+"SyntheticData/uniform_4_10000.txt DELIMITER ',' CSV
+"SyntheticData/uniform_8_10000.txt DELIMITER ',' CSV
+"SyntheticData/uniform_2_10000.txt DELIMITER ',' CSV
+"SyntheticData/uniform_4_10000.txt DELIMITER ',' CSV
+"SyntheticData/uniform_8_10000.txt DELIMITER ',' CSV
+.shell
+"")

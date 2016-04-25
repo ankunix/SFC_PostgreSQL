@@ -1,0 +1,9 @@
+[user]
+	email = ankush.26.11@gmail.com
+	name = Ankush Chauhan
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+[push]
+	default = simple

@@ -1,0 +1,36 @@
+CREATE OR REPLACE FUNCTION HilbertAC_PQ_D(DATA_CATEGORY text,NDIM integer,SIZE integer,GRID_EDGE integer)
+  RETURNS integer
+AS $$
+import csv
+import sys
+import math
+grid_edge=1024
+totalPoints=grid_edge**ndim
+order=int(math.log(totalPoints,4))
+sys.path.append('/home/sdb/PyScripts')
+import hilbert
+try:
+    plan=plpy.prepare("SELECT * FROM "+data_category+"_"+str(ndim)+"_"+str(size)+" WHERE id=(select id from HilbertAC_"+str(data_category)+"_"+str(ndim)+"_"+str(size)+" where vkey=$1)", ["text"])
+except plpy.SPIError:
+    return -1
+with open('/home/sdb/SyntheticData/point_query_'+str(data_category).lower()+'/point_'+str(data_category).lower()+'_'+str(ndim)+'.txt', 'rU') as f:
+    reader = csv.reader(f)
+    rowCount=0
+    for row in reader:
+        if ndim==2:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row[1]),int(row[2]))))
+        elif ndim==4:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row[1]),int(row[2]),int(row[3]),int(row[4]))))
+        elif ndim==8:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row[1]),int(row[2]),int(row[3]),int(row[4]),int(row[5]),int(row[6]),int(row[7]),int(row[8]))))
+        elif ndim==16:
+            vKey=int(hilbert.hilbert_index(ndim, order, (int(row[1]),int(row[2]),int(row[3]),int(row[4]),int(row[5]),int(row[6]),int(row[7]),int(row[8]),int(row[9]),int(row[10]),int(row[11]),int(row[12]),int(row[13]),int(row[14]),int(row[15]),int(row[16]))))
+        else:
+            plpy.info("Unsupported dimensionality!")
+            return -2
+        rv=plpy.execute(plan,[vKey])
+        rowCount+=rv.nrows()
+        if(rv.nrows()!=0):
+              plpy.info(rv)
+return rowCount
+$$ LANGUAGE plpythonu;
