@@ -1,53 +1,3 @@
-psql
-
-exit
-psql
-sudo nano /etc/postgresql/9.4/main/pg_hba.conf
-psql
-sudo nano /etc/postgresql/9.3/main/pg_hba.conf
-sudo nano /etc/postgresql/9.4/main/pg_hba.conf
-psql
-sudo service postgresql restart
-psql
-sudo nano /etc/postgresql/9.4/main/postgresql.conf 
-invoke-rc.d postgresql restart
-sudo nano /etc/postgresql/9.4/main/pg_hba.conf
-invoke-rc.d postgresql reload 
-sudo reboot
-psql
-sudo nano /etc/postgresql/9.4/main/pg_hba.conf
-invoke-rc.d postgresql reload 
-sudo reboot
-sudo apt-get update
-sudo passwd postgres
-ssh-keygen
-sudo apt-get install phppgadmin
-sudo nano /etc/apache2/conf.d/phppgadmin
-exit
-ls
-exit
-pgpsql
-psql
-sudo apt-get install unzip
-quit
-logout
-sudo apt-get install libpq-dev
-ls /usr/local/include/
-find . -type f -name "postgres.h"
-find / -type f -name "postgres.h"
-sudo find / -type f -name "postgres.h"
-locate postgresql
-locate postgresql/*.h
-locate *.h
-sudo apt-get install -f libpq-dev
-sudo apt-get update
-sudo apt-get upgrade 
-sudo apt-get install cowsay
-cowsay Welcome
-fortune
-sudo apt-get install fortune
-fortune | cowsay
-vi /etc/bash.bashrc
 sudo vi /etc/bash.bashrc
 fortune | xcowsay
 sudo vi /etc/bash.bashrc
@@ -1740,3 +1690,311 @@ cd point_query_
 cd point_query_cluster/
 ls
 psql
+ls
+git add .
+git commit -m "Final Commit"
+rm -rf temp/
+ls
+cat README.txt 
+rm README.md 
+mv README.txt README.md
+ls
+git commit -m "Final Commit"
+git push
+cd bkp/
+ls
+cd ..
+git lfs install
+sudo git lfs install
+git push
+cd bkp/
+ls
+sudo apt-get install 7z
+sudo apt-get install 7zip
+split --bytes=100M r_u_2.bkp
+ls
+ls xaa 
+ls -lrt
+rm xaa 
+split --bytes=100M r_u_4.bkp r_u_4.bkp.part
+ls
+rm r_u_4.bkp.parta*
+split --bytes=100M r_u_4.bkp r_u_4.bkp.part_
+LS
+ls
+rm r_u_4.bkp
+ls
+ls -lrt
+cd ..
+git commit -m "Splitted 4D range query bakup into 4 100M parts"
+git push
+git add .
+cd SyntheticData/range_query_uniform/
+ls
+ls -lrt
+split --bytes=100M range_u_4.txt range_u_4.txt.part_
+rm range_u_4.txt
+ls
+ls -lrt
+cd ~
+git commit -m "Splitted 4D range query bakup into 4 100M parts"
+git commit -m "Splitted 4D range query bakup into 100M parts"
+git push
+cd yntheticData/range_query_uniform/
+cd syntheticData/range_query_uniform/range_u_4.txt
+cd SyntheticData/range_query_uniform/range_u_4.txt
+cd SyntheticData/range_query_uniform/
+ls --lrt
+ls
+cd ~
+git add .
+git rebase
+git clean
+ls
+ls -a
+cd .git/
+ls
+cat COMMIT_EDITMSG 
+cat index 
+rm -rf
+ls
+cd ..
+rm -rf .git
+sudo rm -rf .git
+git add .
+mkdir Repo
+cp * Repo
+ls
+cd bkp/
+ls
+cd ../Repo/
+ls
+cd ..
+rm R
+rm Repo/
+ls
+rm -rf Repo/
+ls
+git init
+git status
+git add .
+git commit -m "Version 1.0"
+git push SFC_PostgreSQL master
+git push https://github.com/ankush2611/SFC_PostgreSQL.git
+git push --set-upstream https://github.com/ankush2611/SFC_PostgreSQL.git master
+cd ..
+ls
+mkdir git
+sudo mkdir git
+cd git
+git pull https://github.com/ankush2611/SFC_PostgreSQL.git
+git clone https://github.com/ankush2611/SFC_PostgreSQL.git
+sudo git clone https://github.com/ankush2611/SFC_PostgreSQL.git
+ls
+cd SFC_PostgreSQL/
+ls
+cd ~/sdb
+cd ~
+cd ..
+cp sdb git/SFC_PostgreSQL/
+cp -a  sdb/. git/SFC_PostgreSQL/
+sudo cp -a  sdb/. git/SFC_PostgreSQL/
+cd git/SFC_PostgreSQL/
+ls
+git commit -m "Version 1.0"
+git push
+git push https://github.com/ankush2611/SFC_PostgreSQL.git aster
+git push https://github.com/ankush2611/SFC_PostgreSQL.git master
+sudo git push https://github.com/ankush2611/SFC_PostgreSQL.git master
+git pull
+sudo git pull https://github.com/ankush2611/SFC_PostgreSQL.git
+git push
+git remote add https://github.com/ankush2611/SFC_PostgreSQL.git
+sudo git push https://github.com/ankush2611/SFC_PostgreSQL.git master
+git pull https://github.com/ankush2611/SFC_PostgreSQL.git
+sudo git pull https://github.com/ankush2611/SFC_PostgreSQL.git
+git commit
+cd ..
+git pull
+git clone https://github.com/ankush2611/SFC_PostgreSQL.git
+sudo git clone https://github.com/ankush2611/SFC_PostgreSQL.git
+rm -rf SFC_PostgreSQL/
+sudo rm -rf SFC_PostgreSQL/
+sudo git clone https://github.com/ankush2611/SFC_PostgreSQL.git
+git pull
+git pull https://github.com/ankush2611/SFC_PostgreSQL.git master
+git pull https://github.com/ankush2611/SFC_PostgreSQL.git
+git pull
+git status
+cd SFC_PostgreSQL/
+git status 
+git pull
+sudo git pull
+cd ..
+cp -a sdb/. git/SFC_PostgreSQL/
+sudo cp -a sdb/. git/SFC_PostgreSQL/
+cd git/SFC_PostgreSQL/
+ls
+git commit -m "Version 1.0"
+git add .
+git commit -m "Version 1.0"
+git push
+git push https://github.com/ankush2611/SFC_PostgreSQL.git
+sudo 
+git status 
+git commit -m "Version 1.0"
+sudo git push --set-upstream https://github.com/ankush2611/SFC_PostgreSQL.git master
+git pull
+git pull git push --set-upstream https://github.com/ankush2611/SFC_PostgreSQL.git master
+sudo git push --set-upstream https://github.com/ankush2611/SFC_PostgreSQL.git master
+git pull https://github.com/ankush2611/SFC_PostgreSQL.git master
+sudo git pull https://github.com/ankush2611/SFC_PostgreSQL.git master
+git commit 
+git add .
+sudo git add .
+git push https://github.com/ankush2611/SFC_PostgreSQL.git master
+sudo git pull https://github.com/ankush2611/SFC_PostgreSQL.git master
+git add .
+git commit
+git commit -m "Changes"
+cp -a ~/. .
+sudo cp -a ~/. .
+git add .
+git commit -m "Version 1.0"
+git push https://github.com/ankush2611/SFC_PostgreSQL.git master
+git checkout master
+git branch -d
+git branch -d master
+git push --force https://github.com/ankush2611/SFC_PostgreSQL.git master
+psql
+sudo apt-get install mysql-server
+mysql
+mysql -u root -p
+sudo /etc/init.d/mysql stop
+sudo /etc/init.d/mysqld stop
+sudo reboot
+mysql -u root -p
+cd /etc/mysql/
+ls
+vim my.cnf
+ls
+mysqladmin -u root -p status
+sudo chmod -R 755 /var/lib/mysql/
+sudo apt-get install mysql-server
+sudo apt-get -f install mysql-server
+sudo apt-get -f install
+mysqladmin -u root -p status
+mysqladmin -u root -p sdb
+mysqladmin 
+mysql -u root -p
+mkdir
+mkdir dump
+mysqladmin -u root -p sdb
+mysql -u root -p
+vim /etc/mysql/my.cnf
+sudo vim /etc/mysql/my.cnf
+sudo service mysqld start
+mysqladmin -u root -p status
+sudo vim /etc/mysql/my.cnf
+sudo reboot
+ls dump/
+ls
+ls dump/
+cat dump/pharos
+cat dump/pharos1.csv 
+mysql -u root -p
+cd dump/
+ls
+cat pharos* > pharos.csv
+ls -ltr
+wc -l pharos.csv 
+head pharos.csv 
+head | tail -l 1 pharos.csv 
+head < tail -l +1 pharos.csv 
+tail -l +1 pharos.csv  | head
+tail -n +1 pharos.csv  | head
+tail -n +2 pharos.csv  | head
+rm pharos.csv 
+tail -n +2 pharos* > pharos.csv
+wc -l pharos.csv 
+sudo vim /etc/mysql/my.cnf
+ps xa | grep mysqld
+netstat -ln | grep mysql
+sudo vim /etc/mysql/my.cnf
+sud oreboot
+sudo reboot
+mysql
+sudo mysql_install_db
+sudo vim /etc/mysql/my.cnf
+sudo mysql_install_db
+mysqld --initialize
+sudo mysqld --initialize
+sudo mysql_install_db
+sudo reboot
+sudo mysql_install_db
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo mysql_install_db
+sudo mysql_secure_installation
+sudo nano /etc/mysql/my.cnf
+sudo service mysql restart
+mysql -u root -p
+mysql -u sdb
+mysql -u sdb -p
+mysql -u root -p
+\q
+sudo apt-get install nginx php5-fpm php5-mysql
+cd dump/
+ls
+tail -n +2 pharos*
+awk 'FNR==1 && NR!=1{next;}{print}' *.csv > as
+head as
+wc -l as 
+tail as
+perl -ne 'print if $. > 1 or ! $h; $h=1; close ARGV if eof' *.csv > master.csv
+wc -l master.csv 
+head master.csv 
+grep "eat" master.
+tail -n +2 master.csv > pharos.csv
+head pharos
+head pharos.csv 
+wc -l pharos
+wc -l pharos.csv 
+ls
+mysql -u root -p
+service mysqld stop; mysqld_safe
+sudo service mysqld stop; mysqld_safe
+mysql -u root -p
+sudo vim /etc/my.cnf 
+sudo vim /etc/mysql/my.cnf
+sudo service mysql restart
+mysql -u root -p
+service mysqld stop
+sudo service mysqld stop
+sudo service mysql stop
+mysqld_safe --skip-grant-tables --skip-networking &
+sudo mysql_safe --skip-grant-tables --skip-networking &
+ls
+rm-rf dump/
+rm -rf dump
+rm-rf dump/
+ls
+sudo apt-get remove mysql
+sudo apt-get remove mysql-server
+sudo apt-get remove mysql-server-5.7 
+sudo apt-get remove mysql-server-core-5.7 
+sudo apt-get remove mysql
+mysql -u root -p
+cd SyntheticData/
+ls
+mv cluster_*.txt 
+mkdir cluster_data_100k
+mv cluster_*.txt  cluster_data_100k
+ls
+ls cluster_data_1*
+psql
+cat /proc/cpuinfo
+psql -v
+\q
+rm -rf java
+mkdir Java

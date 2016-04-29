@@ -11,9 +11,9 @@
 ~MSle0~/listen
 
 # Command Line History (newest to oldest):
+:wq!
 :q!
 :q
-:wq!
 
 # Search String History (newest to oldest):
 ?/listen
@@ -30,23 +30,29 @@
 # Input Line History (newest to oldest):
 
 # Registers:
-"q	CHAR	0
-	
 ""-	CHAR	0
 	l
 
 # File marks:
-'0  156  14  ~/PyScripts/hilbert.py
-'1  1  0  ~/PyScripts/hil
-'2  1  0  ~/java/MC2.java
-'3  157  0  ~/java/MC2.java
-'4  57  0  ~/java/MC2.java
-'5  53  13  ~/java/MC2.java
-'6  56  33  ~/java/MC2.java
-'7  60  0  /etc/postgresql/9.4/main/postgresql.conf
-'8  67  8  ~/java/MC2.java
+'0  1  0  /etc/my.cnf
+'1  2  22  /etc/mysql/my.cnf
+'2  1  0  /etc/mysql/my.cnf
+'3  5  31  /etc/mysql/my.cnf
+'4  4  37  /etc/mysql/my.cnf
+'5  24  0  /etc/mysql/my.cnf
+'6  29  0  /etc/mysql/my.cnf
+'7  156  14  ~/PyScripts/hilbert.py
+'8  1  0  ~/PyScripts/hil
+'9  1  0  ~/java/MC2.java
 
 # Jumplist (newest first):
+-'  1  0  /etc/my.cnf
+-'  2  22  /etc/mysql/my.cnf
+-'  1  0  /etc/mysql/my.cnf
+-'  5  31  /etc/mysql/my.cnf
+-'  4  37  /etc/mysql/my.cnf
+-'  24  0  /etc/mysql/my.cnf
+-'  29  0  /etc/mysql/my.cnf
 -'  156  14  ~/PyScripts/hilbert.py
 -'  1  0  ~/PyScripts/hilbert.py
 -'  1  0  ~/PyScripts/hil
@@ -138,17 +144,22 @@
 -'  88  0  /etc/postgresql/9.4/main/postgresql.conf
 -'  70  5  /etc/postgresql/9.4/main/postgresql.conf
 -'  124  0  /etc/postgresql/9.4/main/postgresql.conf
--'  58  0  /etc/postgresql/9.4/main/postgresql.conf
--'  1  0  /etc/postgresql/9.4/main/postgresql.conf
--'  60  0  /etc/postgresql/9.4/main/postgresql.conf
--'  617  5  /etc/postgresql/9.4/main/postgresql.conf
--'  88  0  /etc/postgresql/9.4/main/postgresql.conf
--'  1  0  ~/java/MC2.java
--'  157  0  ~/java/MC2.java
--'  57  0  ~/java/MC2.java
--'  53  13  ~/java/MC2.java
 
 # History of marks within files (newest to oldest):
+
+> /etc/my.cnf
+	"	1	0
+
+> /etc/mysql/my.cnf
+	"	14	33
+	^	14	34
+	.	14	33
+	+	25	0
+	+	1	8
+	+	4	0
+	+	5	0
+	+	2	22
+	+	14	33
 
 > ~/PyScripts/hilbert.py
 	"	156	14
