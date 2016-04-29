@@ -1,10 +1,3 @@
-sudo vi /etc/bash.bashrc
-fortune | xcowsay
-sudo vi /etc/bash.bashrc
-logout
-adduser test
-sudo adduser test
-su - postgres
 q
 psql
 su - test
@@ -1998,3 +1991,10 @@ psql -v
 \q
 rm -rf java
 mkdir Java
+git commit
+git commit -m "Morton Code Java"
+git push master
+git add .
+git commit -m "Morton Code Java"
+git push https://github.com/ankush2611/SFC_PostgreSQL master
+git push -f https://github.com/ankush2611/SFC_PostgreSQL master

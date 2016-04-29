@@ -1,0 +1,36 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fmodern\fcharset0 CourierNewPSMT;\f1\fmodern\fcharset0 CourierNewPS-ItalicMT;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 =========================================\
+README\
+=========================================\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+       RandomGenerator\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+This program generates uniform and cluster data in any dimension and number of points that you are aiming to generate. First half of the code is for uniform and second half is for cluster data. One of these two sections is always commented out just for ease of reading. For uniform and cluster data, you must specific the absolute path you are writing to along with the file name.\
+\
+In uniform section, 
+\f1\i i
+\f0\i0  must be altered in order to generate the desired number of points you wish to generate in the file. Next, comment/uncomment lines as needed for the number of dimensions you wish to create for a point. The range of numbers the random generate should generate from must be altered to accommodate for the number of points you want to generate. For example: if you are in 2D and want to generate 10K and 256X256 will result in 65636 unique points, however to generate 100K points in 2D, the range must increase to 1024. This is because the code does not generate repeats.\
+\
+In cluster section, i is not used to determine the number of points you wish to generate but the number of clusters you want to have in the entire data set. Once again the range for the random generator must be selected based on number of points you wish to generate. On line 179, we come to the part in the cluster data generator that will be need to be modified base on how many points to create around a center. For example, if you want 
+\f1\i k
+\f0\i0  number of points and 
+\f1\i i
+\f0\i0  centers, you should generate 
+\f1\i k
+\f0\i0 /
+\f1\i i
+\f0\i0  points around the center. This is the number that will go within the while loop to count how many non-repetitive points have been generated. And just as before, comment/uncomment the number of lines that generate the number for the dimensions of a point. You will need to update the if check to make sure that the points stay with the bounds of the space since the Gaussian generator does not reach the range you specify earlier. The last bit of changes to make is the value multiple by the random Gaussian number and that is the standard deviation value. Base this on the range from the center\'92s dimension. Increase this number as the number of points increases.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+      SpaceFillingCurve\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+This program is very simple to use. Run the program and it will prompt you for the data needed to complete SFC generation on a data set, point query generation of points, and range query MBR index generation. You will be prompted for the table name. Followed by the destination table and dimension of the data set to compute Moore Curve on. And finally, the bitSize of a dimension. Since this is uniform and not varying, the bitSize will be constant. For the generation of the Moore index to be placed into the proper destination table in PostgreSQL, the following rules for table name should be followed when you enter in the destination table name: for SFC generation the table name should begin with \'91mooreap\'92, for point query table, the table name should begin with \'91point_mooreap\'92, and for range query, the table name should begin with \'91range_mooreap\'92. }
